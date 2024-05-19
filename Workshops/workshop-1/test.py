@@ -26,12 +26,12 @@ frame_width = int(cap.get(3))
 frame_height = int(cap.get(4))
 # Define the codec and create VideoWriter object.
 # The output is stored in 'outputV1.avi' file.
-outputvideofilepath="TestVideo1.avi"
+outputvideofilepath="TestVideo30.avi"
 codec = cv2.VideoWriter_fourcc(*'DIVX')
-frame_rate = 30 # 10, 20, 25
+frame_rate = 30 # 5, 10, 20, 25, 30
 resolution = (frame_width,frame_height)
 
-out =cv2.VideoWriter(outputvideofilepath, codec , frame_rate, resolution,True)
+out = cv2.VideoWriter(outputvideofilepath, codec, frame_rate, resolution, True)
 
 # Read until video is completed
 while(cap.isOpened()):
