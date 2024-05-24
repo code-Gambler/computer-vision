@@ -40,6 +40,8 @@ cv2.IMREAD_COLOR, cv2.IMREAD_GRAYSCALE
 """
 import cv2
 import numpy as np
+import os
+
 
 if __name__ == '__main__':
 
@@ -47,7 +49,59 @@ if __name__ == '__main__':
     ############################
     ### TODO: YOUR CODE HERE ###
 
-    raise NotImplementedError('Implementation for `Question ` in `workshop2` is missing')
+    # Ensure the output directory exists
+    output_dir = '../output'
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # Read the image
+    img = cv2.imread('../data/bicycle.bmp', cv2.IMREAD_UNCHANGED)
+
+    # a) Image height
+    height = img.shape[0]
+    print(f"Image height: {height}")
+
+    # b) Image width
+    width = img.shape[1]
+    print(f"Image width: {width}")
+
+    # c) Number of channels
+    channels = img.shape[2] if len(img.shape) > 2 else 1
+    print(f"Number of channels: {channels}")
+
+    # d) Image datatype
+    datatype = img.dtype
+    print(f"Image datatype: {datatype}")
+
+    # e) Number of pixels
+    num_pixels = img.size
+    print(f"Number of pixels: {num_pixels}")
+
+    # f) Convert to gray level and save
+    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    cv2.imwrite(os.path.join(output_dir, 'bicyclegray.jpg'), gray_img)
+
+    # g) Maximum pixel value
+    max_val = np.max(gray_img)
+    print(f"Maximum pixel value: {max_val}")
+
+    # h) Mean pixel value
+    mean_val = np.mean(gray_img)
+    print(f"Mean pixel value: {mean_val}")
+
+    # i) Change pixel values and save
+    binary_img = np.where(gray_img < mean_val, 0, 1).astype(np.uint8)
+    # if len(img.shape) > 2:
+    #     channels = img.shape[2]
+    # else:
+    #     channels = 1
+
+    cv2.imwrite(os.path.join(output_dir, 'bicycleoutA.jpg'), binary_img * 255)
+
+    # j) Type of image generated
+    print("The image generated is a binary image.")
+
+    # raise NotImplementedError('Implementation for `Question ` in `workshop2` is missing')
 
     ### END OF STUDENT CODE ####
     ############################
