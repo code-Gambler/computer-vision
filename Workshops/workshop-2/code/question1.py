@@ -93,7 +93,7 @@ if __name__ == '__main__':
     cv2.imwrite(os.path.join(output_dir, 'bicycleoutA.jpg'), binary_img * 255)
 
     # j) Type of image generated
-    print("The image generated is a binary image.")
+    print("The image generated at (i) is a binary image.")
 
     # raise NotImplementedError('Implementation for `Question ` in `workshop2` is missing')
 
