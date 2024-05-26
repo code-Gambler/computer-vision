@@ -1,9 +1,10 @@
 """
-Group Number: ..........
+Group Number: 31
 Group Names :
-     Last name , First name
-     .......
-     .......
+     Olha Hodovaniuk
+     Ruyuan Sun
+     Steven David Pillay
+     Syed Moonis Iqbal
 """
 
 
@@ -19,20 +20,23 @@ The name of generated images as following lena256.jpg, lena128.jpg, lena64.jpg, 
  lena8.png, lena4.png, and lena2.png.
 
 
-
-
 """
 import cv2
 import numpy as np
 
 if __name__ == '__main__':
 
-
     ############################
     ### TODO: YOUR CODE HERE ###
 
-    raise NotImplementedError('Implementation for `Question ` in `workshop2` is missing')
+    levels = [256, 128, 64, 32, 16, 8, 4, 2]
 
-    ### END OF STUDENT CODE ####
-    ############################
+    image = cv2.imread('data/lena.tif', cv2.IMREAD_GRAYSCALE)
+
+    for level in levels:
+        image_level = (image // (256 // level)) * 256 // level
+        cv2.imwrite(f'output/lena{level}.jpg', image_level)
+	
+	### END OF STUDENT CODE ####
+	############################
 
