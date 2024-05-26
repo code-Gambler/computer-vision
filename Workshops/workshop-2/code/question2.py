@@ -1,9 +1,10 @@
 """
-Group Number: ..........
+Group Number: 31
 Group Names :
-     Last name , First name
-     .......
-     .......
+     Pillay, Steven
+     Hodovaniuk, Olha
+     Sun, Ruyuan
+     Iqbal, Syed
 """
 
 
@@ -33,12 +34,12 @@ if __name__ == '__main__':
     ### TODO: YOUR CODE HERE ###
 
     # Ensure the output directory exists
-    output_dir = '../output'
+    output_dir = 'output'
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
     # Read the image
-    img = cv2.imread('../data/lena.tif', cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread('data/lena.tif', cv2.IMREAD_GRAYSCALE)
 
 
     # Function to reduce intensity levels
@@ -46,14 +47,6 @@ if __name__ == '__main__':
         factor = 256 // levels
         reduced_img = (image // factor) * factor
         return reduced_img
-    # image // factor: This step is to divide each pixel value of the original image by factor, and then take the
-    # integer quotient (round down). If factor is 16, then all pixel values between 0 and 15 will be assigned to
-    # the same new level, level 0.
-
-    # (image // factor) * factor: Next, each compressed gray level is multiplied back by factor. The purpose of
-    # this step is to restore the compressed gray level to the actual gray value. For example, if factor is 16 and
-    # a pixel value is classified as level 1, then the restored gray value will be 1 * 16 = 16. This way, each pixel
-    # value is constrained to a new gray level.
 
 
     # Intensity levels

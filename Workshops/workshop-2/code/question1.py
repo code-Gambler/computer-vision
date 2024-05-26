@@ -1,12 +1,11 @@
 
 """
-Group Number: ..........
+Group Number: 31
 Group Names :
-     Last name , First name
-     .......
-     .......
-
-
+     Pillay, Steven
+     Hodovaniuk, Olha
+     Sun, Ruyuan
+     Iqbal, Syed
 """
 
 
@@ -50,12 +49,12 @@ if __name__ == '__main__':
     ### TODO: YOUR CODE HERE ###
 
     # Ensure the output directory exists
-    output_dir = '../output'
+    output_dir = 'output'
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
     # Read the image
-    img = cv2.imread('../data/bicycle.bmp', cv2.IMREAD_UNCHANGED)
+    img = cv2.imread('data/bicycle.bmp', cv2.IMREAD_COLOR)
 
     # a) Image height
     height = img.shape[0]
@@ -91,11 +90,6 @@ if __name__ == '__main__':
 
     # i) Change pixel values and save
     binary_img = np.where(gray_img < mean_val, 0, 1).astype(np.uint8)
-    # if len(img.shape) > 2:
-    #     channels = img.shape[2]
-    # else:
-    #     channels = 1
-
     cv2.imwrite(os.path.join(output_dir, 'bicycleoutA.jpg'), binary_img * 255)
 
     # j) Type of image generated
