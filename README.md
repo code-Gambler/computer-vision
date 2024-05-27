@@ -7,3 +7,7 @@ All the Workshops and the Project developed during the course CVI620 at Seneca c
 - Olha Hodovaniuk
 - Ruyuan Sun
 - Syed Moonis Iqbal
+
+## Workshop 1
+## Workshop 2
+## Workshop 3
