@@ -90,11 +90,15 @@ if __name__ == '__main__':
     top_left = quarters[selected_quarter][0]
     bottom_right = quarters[selected_quarter][1]
 
-    # Define pentagon points
-    center_x = np.random.randint(top_left[0] + 60, bottom_right[0] - 60)
-    center_y = np.random.randint(top_left[1] + 60, bottom_right[1] - 60)
-    size = np.random.randint(21, min(bottom_right[0] - top_left[0], bottom_right[1] - top_left[1]) // 2)
+    # The size of the pentagon should be greater than 20 and less than half of the short side of the selected quarter
+    size = np.random.randint(21, 120)
 
+    # Make sure the distance from the center of the pentagon to the border of the selected area is greater than the size
+    # of the pentagon
+    center_x = np.random.randint(top_left[0] + size, bottom_right[0] - size)
+    center_y = np.random.randint(top_left[1] + size, bottom_right[1] - size)
+
+    # Define the pentagon points
     angles = [i * (2 * math.pi / 5) for i in range(5)]  # 5 vertices
     pentagon_points = np.array([[
         (int(center_x + size * math.cos(angle)), int(center_y + size * math.sin(angle)))
@@ -117,11 +121,19 @@ if __name__ == '__main__':
     bottom_right = quarters[selected_quarter][1]
 
     font = cv2.FONT_HERSHEY_SIMPLEX
-    text = 'Group 31'
-    text_size = cv2.getTextSize(text, font, 1, 2)[0]
+    text = 'Group thirty-one'
+
+    # Adjust font scale to fit text in the quarter
+    font_scale = 1
+    font_thickness = 2
+    text_size = cv2.getTextSize(text, font, font_scale, font_thickness)[0]
+
+    while text_size[0] > (bottom_right[0] - top_left[0]) or text_size[1] > (bottom_right[1] - top_left[1]):
+        font_scale -= 0.1
+        text_size = cv2.getTextSize(text, font, font_scale, font_thickness)[0]
     text_x = top_left[0] + (bottom_right[0] - top_left[0] - text_size[0]) // 2
     text_y = top_left[1] + (bottom_right[1] - top_left[1] + text_size[1]) // 2
-    cv2.putText(black_image, text, (text_x, text_y), font, 1, (0, 255, 0), 2, cv2.LINE_AA)
+    cv2.putText(black_image, text, (text_x, text_y), font, font_scale, (0, 255, 0), font_thickness, cv2.LINE_AA)
 
     # Display the result image
     cv2.imshow('Group Name', black_image)
@@ -134,4 +146,3 @@ if __name__ == '__main__':
     #
     ### END OF STUDENT CODE ####
     ############################
-
